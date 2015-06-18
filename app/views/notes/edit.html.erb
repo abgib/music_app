@@ -1,0 +1,22 @@
+<% action = (note.persisted? ? note_url(note) : notes_url) %>
+<% method = (note.persisted? ? :patch : :post) %>
+<% second_header = (if note.persisted
+      <input type="hidden" name="_method" value="patch">) %>
+<% title = (note.persisted? ? "Edit Note" : "Create Note") %>
+
+<h1><%= title %></h1>
+
+  <form action="<%= action %>" method="post">
+    <%= second_header %>
+    <input type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token  %>">
+
+    <label for="notes_track_notes">Notes
+      <br>
+      <textarea name="notes[track_notes]" id="notes_track_notes"><%= @notes.track_notes %></textarea>
+    </label><br><br>
+
+    <button>Create Note</button>
+
+  </form>
