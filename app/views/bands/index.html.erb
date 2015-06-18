@@ -5,7 +5,7 @@
 <table>
   <% @bands.each do |band| %>
     <tr>
-      <td><%= band.name %></td>
+      <td><a href="<%= band_url(band) %>"><%= band.name %></a></td>
 
       <td><%= button_to "Edit Band", edit_band_url(band.id), method: :get %></td>
 

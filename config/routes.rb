@@ -1,13 +1,16 @@
 MusicApp::Application.routes.draw do
-    resources :users, only: [:create, :new, :show]
+  resources :users, only: [:create, :new, :show]
 
-    resource :session, only: [:create, :new, :destroy]
+  resource :session, only: [:create, :new, :destroy]
 
-    resources :bands
+  resources :bands
 
-    resources :albums, only: [:new, :create, :edit, :show,
-      :update, :destroy]
+  resources :albums, only: [:new, :create, :edit, :show,
+    :update, :destroy]
 
-    resources :tracks, only: [:new, :create, :edit, :show,
-      :update, :destroy]
+  resources :tracks, only: [:new, :create, :edit, :show,
+    :update, :destroy]
+
+  root to: "bands#index"
+
 end
