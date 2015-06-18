@@ -4,3 +4,4 @@
     <input type="hidden" name="_method" value="delete">
     <%= button_to "Delete Band", band_url(@band), method: :post %>
   </form>
+  <%= button_to "All Bands", bands_url, method: :get %>
