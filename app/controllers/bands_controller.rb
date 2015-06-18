@@ -10,6 +10,18 @@ class BandsController < ApplicationController
 
   def create
     @band = Band.new(band_params)
+
+    if @band.save
+      redirect_to band_url(@band)
+    else
+      flash[:errors] = @band.errors.full_messages
+      render :new
+    end
+  end
+
+  def show
+    @band = Band.find(params[:id])
+    render :show
   end
 
   private
