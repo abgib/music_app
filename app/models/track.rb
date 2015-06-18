@@ -13,6 +13,13 @@
 class Track < ActiveRecord::Base
   SONG_TYPES = %w{ bonus regular }
 
+  belongs_to(
+    :album,
+    class_name: 'Album',
+    foreign_key: :album_id,
+    primary_key: :id
+  )
+
   validates :album_id, :song_type, presence: true
   validates :song_type, inclusion: { in: SONG_TYPES }
 end
