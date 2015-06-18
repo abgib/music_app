@@ -40,6 +40,18 @@ class BandsController < ApplicationController
     end
   end
 
+  def destroy
+    @band = Band.find(params[:id])
+
+    if @band.destroy
+      flash[:errors] = ["Band deleted"]
+      redirect_to user_url(current_user.id)
+    else
+      flash.now[:errors] = ["No band exists"]
+      redirect_to user_url(current_user.id)
+    end
+  end
+
   private
   def band_params
     params.require(:band).permit(:name)
