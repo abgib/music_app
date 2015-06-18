@@ -11,7 +11,7 @@
 #
 
 class Album < ActiveRecord::Base
-  STYLE_TYPE = %w{ live studio }
+  STYLE_TYPES = %w{ live studio }
 
   belongs_to(
     :band,
@@ -29,5 +29,5 @@ class Album < ActiveRecord::Base
   )
 
   validates :band_id, :style_type, :title, presence: true
-  validates :style_type, inclusion: { in: STYLE_TYPE }
+  validates :style_type, inclusion: { in: STYLE_TYPES }
 end

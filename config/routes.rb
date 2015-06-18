@@ -11,6 +11,6 @@ MusicApp::Application.routes.draw do
   resources :tracks, only: [:new, :create, :edit, :show,
     :update, :destroy]
 
-  root to: "bands#index"
+  root to: "sessions#new"
 
 end

@@ -1,0 +1,20 @@
+<h1>Track: <%= @track.track_title %></h1>
+
+  <h2>Artist: <%= @track.album.band.name %></h2>
+
+  <h2>Album: <%= @track.album.title %></h2>
+
+  <h2>Style: <%= @track.song_type.capitalize %></h2>
+
+  <label for="track_lyrics">Lyrics
+    <br>
+    <br>
+    <text name="track[lyrics]" id="track_lyrics"><%= @track.lyrics == "" ? "No lyrics available" : @track.lyrics %></textarea>
+  </label><br><br>
+
+  <%= button_to "Edit Track", edit_track_url(@track), method: :get %>
+  <form action="<%= track_url %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <%= button_to "Delete Track", track_url(@track), method: :post %>
+  </form>
+  <%= button_to "Back to Album", album_url(@track.album.id), method: :get %>

@@ -16,6 +16,13 @@
         </form>
       </td>
 
+      <td>
+        <form action="<%= new_album_url %>" method="get">
+          <input type="hidden" name="album[band_id]" value="<%= band.id %>">
+        <button>Add Album</button>
+        </form>
+      </td>
+
     </tr>
   <% end %>
 </table>

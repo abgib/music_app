@@ -3,5 +3,43 @@
   <form action="<%= band_url %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <%= button_to "Delete Band", band_url(@band), method: :post %>
-  </form>
-  <%= button_to "All Bands", bands_url, method: :get %>
+  </form><br>
+
+  <form action="<%= new_album_url %>" method="get">
+    <input type="hidden" name="album[band_id]" value="<%= @band.id %>">
+  <button>Add Album</button>
+  </form><br>
+
+<h3>Albums</h3>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Add Track</th>
+    </tr>
+
+    <% @band.albums.each do |album| %>
+      <tr>
+        <td><a href="<%= album_url(album) %>"><%= album.title %></a></td>
+
+        <td><%= button_to "Edit Album", edit_album_url(album.id), method: :get %></td>
+
+        <td>
+          <form action="<%= album_url(album) %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <%= button_to "Delete Album", album_url(album), method: :post %>
+          </form>
+        </td>
+
+        <td>
+          <form action="<%= new_track_url %>" method="get">
+            <input type="hidden" name="track[album_id]" value="<%= album.id %>">
+          <button>Add Track</button>
+          </form>
+        </td>
+
+      </tr>
+    <% end %>
+  </table>

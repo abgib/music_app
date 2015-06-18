@@ -1,0 +1,40 @@
+<h1><%= @album.title %></h1>
+  <h2><%= @album.band.name %></h2>
+  <h2>Style: <%= @album.style_type %></h2>
+
+  <%= button_to "Edit Album", edit_album_url(@album), method: :get %>
+  <form action="<%= album_url %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <%= button_to "Delete Album", album_url(@album), method: :post %>
+  </form><br>
+
+  <form action="<%= new_track_url %>" method="get">
+    <input type="hidden" name="track[album_id]" value="<%= @album.id %>">
+  <button>Add Track</button>
+  </form>
+
+  <h3>Tracks</h3>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+
+    <% @album.tracks.each do |track| %>
+      <tr>
+        <td><a href="<%= track_url(track) %>"><%= track.track_title %></a></td>
+
+        <td><%= button_to "Edit Track", edit_track_url(track.id), method: :get %></td>
+
+        <td>
+          <form action="<%= track_url(track) %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <%= button_to "Delete Track", track_url(track), method: :post %>
+          </form>
+        </td>
+
+      </tr>
+    <% end %>
+  </table>
