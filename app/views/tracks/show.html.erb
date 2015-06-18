@@ -18,3 +18,9 @@
     <%= button_to "Delete Track", track_url(@track), method: :post %>
   </form>
   <%= button_to "Back to Album", album_url(@track.album.id), method: :get %>
+
+<br>
+
+<h3>Notes</h3>
+
+<%= render "notes/form.html.erb" %>
