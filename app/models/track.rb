@@ -21,6 +21,9 @@ class Track < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :notes
+  )
   validates :album_id, :song_type, :track_title, presence: true
   validates :song_type, inclusion: { in: SONG_TYPES }
 end

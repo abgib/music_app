@@ -7,9 +7,10 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    @note.user_id = current_user.id
 
     if @note.save
-      redirect_to note_url(@note)
+      redirect_to track_url(Track.find(@note.track_id))
     else
       flash.now[:errors] = @note.errors.full_messages
       render :new
@@ -42,17 +43,16 @@ class NotesController < ApplicationController
 
     if @note.destroy
       flash[:errors] = ["Note deleted"]
-      redirect_to user_url(current_user.id)
+      redirect_to track_url(Track.find(@note.track_id))
     else
       flash.now[:errors] = ["No note exists"]
-      redirect_to user_url(current_user.id)
+      redirect_to track_url(Track.find(@note.track_id))
     end
   end
 
   private
-  def notes_params
-    params.require(:notes).permit(:track_notes,
-      :user_id, :track_id)
+  def note_params
+    params.require(:notes).permit(:track_notes, :track_id)
   end
 
 end

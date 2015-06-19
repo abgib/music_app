@@ -11,7 +11,15 @@
 #
 
 class Note < ActiveRecord::Base
+  belongs_to(
+    :track
+  )
+
+  belongs_to(
+    :user
+  )
+
   validates :user_id, :track_id, :track_notes, presence: true
 
-  
+
 end

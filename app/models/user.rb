@@ -12,6 +12,9 @@
 
 class User < ActiveRecord::Base
 attr_accessor :password
+  has_many(
+    :notes
+  )
 
   validates :email,
     :session_token,
