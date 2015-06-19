@@ -6,11 +6,14 @@
 
   <h2>Style: <%= @track.song_type.capitalize %></h2>
 
-  <label for="track_lyrics">Lyrics
-    <br>
-    <br>
-    <text name="track[lyrics]" id="track_lyrics"><%= @track.lyrics == "" ? "No lyrics available" : @track.lyrics %></textarea>
-  </label><br><br>
+  <label for="track_lyrics">Lyrics</label>
+  <% if @track.lyrics == "" %>
+    <p><%="No lyrics available"%></p>
+  <%else%>
+    <% ugly_lyrics(@track.lyrics).each do |line| %>
+      <p><%= line %></p>
+    <%end%>
+  <%end%>
 
   <%= button_to "Edit Track", edit_track_url(@track), method: :get %>
   <form action="<%= track_url %>" method="post">

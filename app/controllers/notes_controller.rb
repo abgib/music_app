@@ -41,6 +41,8 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
 
+    render text: "Not owner of note!" if current_user.id != @note.user_id
+
     if @note.destroy
       flash[:errors] = ["Note deleted"]
       redirect_to track_url(Track.find(@note.track_id))
